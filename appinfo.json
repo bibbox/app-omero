@@ -1,0 +1,9 @@
+{
+		"name": "Onyx  (OBiBa's application that manages participant baseline interviews at assessment centres or clinics",
+		"short_name": "Onyx",
+		"version": "1.10.0",
+		"description": "Onyx is a comprehensive web application used to manage subject interviews and collect data in clinics or assessment centres. Using Onyx, studies can design and administrate advanced questionnaires and automate data capture directly from electronic medical instruments avoiding error prone manual data acquisition.",
+		"catalogue_url": "",
+		"application_url": "http://www.obiba.org/pages/products/onyx/",
+		"tags": ["Data Aquisition", "Interviews"]
+}
