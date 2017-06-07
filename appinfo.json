@@ -1,9 +1,10 @@
 {
-		"name": "Omero Biobank Server",
-		"short_name": "Omero BB",
-		"version": "5.2.6",
-		"description": "From the microscope to publication, OMERO handles all your images in a secure central repository. You can view, organize, analyze and share your data from anywhere you have internet access. Work with your images from a desktop app (Windows, Mac or Linux), from the web or from 3rd party software. Over 140 image file formats supported, including all major microscope formats.",
-		"catalogue_url": "",
-		"application_url": "http://www.openmicroscopy.org/site",
-		"tags": ["Imaging", "Digital Pathology", "Microscopy"]
+	"name": "Omero Biobank Server",
+	"short_name": "Omero BB",
+	"version": "5.2.6",
+	"description": "From the microscope to publication, OMERO handles all your images in a secure central repository. You can view, organize, analyze and share your data from anywhere you have internet access. Work with your images from a desktop app (Windows, Mac or Linux), from the web or from 3rd party software. Over 140 image file formats supported, including all major microscope formats.",
+	"catalogue_url": "",
+	"application_url": "http://www.openmicroscopy.org/site",
+	"tags": ["Imaging", "Digital Pathology", "Microscopy"],
+	"application_documentation_url": "http://www.openmicroscopy.org/site/support/omero5.3"
 }
