@@ -1,0 +1,61 @@
+version: '2'
+
+networks:
+    bibbox-default-network:
+      external: true
+
+services:
+
+  §§INSTANCE-omero:
+    image: openmicroscopy/omero-grid
+    command: master
+    container_name:  §§INSTANCE-omero-master
+    restart: unless-stopped
+    links:
+      - §§INSTANCE-omero-db:db
+    environment:
+      DBHOST: §§INSTANCE-omero-db
+      DBUSER: postgres
+      DBPASS: postgres
+      DBNAME: postgres
+      ROOTPASS: omero
+    volumes_from: 
+      - §§INSTANCE-omero-data
+
+    depends_on:
+      - §§INSTANCE-omero-db
+      - §§INSTANCE-omero-data
+   
+  §§INSTANCE-omero-db:
+    image: postgres
+    container_name: §§INSTANCE-omero-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes_from: 
+      - §§INSTANCE-omero-data
+    depends_on:
+      - §§INSTANCE-omero-data
+
+
+  §§INSTANCE-omero-web:
+    image: openmicroscopy/omero-grid-web
+    container_name: §§INSTANCE-omero-web
+    restart: unless-stopped
+    environment:
+      MASTER_ADDR: §§INSTANCE-omero
+    depends_on:
+      - §§INSTANCE-omero
+    links:
+      - §§INSTANCE-omero:master
+    ports:
+      - "§§PORT:8080"
+
+
+  §§INSTANCE-omero-data:
+    image: busybox
+    container_name: §§INSTANCE-omero-data
+    volumes:
+      - ./data/OMERO:/OMERO
+      - ./data/postgres:/var/lib/postgresql/data
+    command: "chown 1000:1000 /OMERO"
