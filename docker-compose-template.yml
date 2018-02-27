@@ -6,7 +6,7 @@ networks:
 
 services:
 
-  §§INSTANCE-omero:
+  §§INSTANCE-omero-grid:
     image: openmicroscopy/omero-grid
     command: master
     container_name:  §§INSTANCE-omero-master
@@ -16,7 +16,7 @@ services:
     environment:
       DBHOST: §§INSTANCE-omero-db
       DBUSER: postgres
-      DBPASS: postgres
+      DBPASS: §§POSTGRES_PASSWORD
       DBNAME: postgres
       ROOTPASS: omero
     volumes_from: 
