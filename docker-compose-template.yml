@@ -43,9 +43,9 @@ services:
     container_name: §§INSTANCE-omero-web
     restart: unless-stopped
     environment:
-      MASTER_ADDR: §§INSTANCE-omero
+      MASTER_ADDR: §§INSTANCE-omero-grid
     depends_on:
-      - §§INSTANCE-omero
+      - §§INSTANCE-omero-grid
     links:
       - §§INSTANCE-omero:master
     ports:
