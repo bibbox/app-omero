@@ -1,0 +1,58 @@
+version: '2'
+
+
+services:
+
+  dev-omero:
+    image: openmicroscopy/omero-grid
+    command: master
+    container_name:  dev-omero-master
+    restart: unless-stopped
+    links:
+      - dev-omero-db:db
+    environment:
+      DBHOST: dev-omero-db
+      DBUSER: postgres
+      DBPASS: postgres
+      DBNAME: postgres
+      ROOTPASS: omero
+    volumes_from: 
+      - dev-omero-data
+
+    depends_on:
+      - dev-omero-db
+      - dev-omero-data
+   
+  dev-omero-db:
+    image: postgres
+    container_name: dev-omero-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes_from: 
+      - dev-omero-data
+    depends_on:
+      - dev-omero-data
+
+
+  dev-omero-web:
+    image: openmicroscopy/omero-grid-web
+    container_name: dev-omero-web
+    restart: unless-stopped
+    environment:
+      MASTER_ADDR: dev-omero
+    depends_on:
+      - dev-omero
+    links:
+      - dev-omero:master
+    ports:
+      - "9010:8080"
+
+
+  dev-omero-data:
+    image: busybox
+    container_name: dev-omero-data
+    volumes:
+      - ./data/OMERO:/OMERO
+      - ./data/postgres:/var/lib/postgresql/data
+    command: "chown 1000:1000 /OMERO"
