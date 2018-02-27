@@ -47,7 +47,7 @@ services:
     depends_on:
       - §§INSTANCE-omero-grid
     links:
-      - §§INSTANCE-omero:master
+      - §§INSTANCE-omero-grid:master
     ports:
       - "§§PORT:8080"
 
