@@ -11,6 +11,6 @@
       "url": "§§INSTANCE-Server",
       "protocol": "HTTP",
       "proxy" : "PRIMARY"
-    },
+    }
   ]
 }
