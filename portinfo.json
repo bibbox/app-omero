@@ -5,7 +5,7 @@
       "url": "§§INSTANCE",
       "protocol": "HTTP",
       "proxy" : "PRIMARY"
-    }
+    },
     {
       "id": "§§PORT2",
       "url": "§§INSTANCE-server",
