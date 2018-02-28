@@ -21,6 +21,8 @@ services:
       DBPASS: §§POSTGRES_PASSWORD
       DBNAME: omeroDBName
       ROOTPASS: omero
+    ports:
+      - "§§PORT2:4064"
     volumes_from: 
       - §§INSTANCE-omero-data
 
