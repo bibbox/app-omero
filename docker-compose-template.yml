@@ -36,8 +36,8 @@ services:
       - bibbox-default-network
     environment:
       - POSTGRES_PASSWORD=§§POSTGRES_PASSWORD
-      - POSTGRES_USER=xnat
-      - POSTGRES_DB=xnat 
+      - POSTGRES_USER=omero
+      - POSTGRES_DB=omero 
     volumes_from: 
       - §§INSTANCE-omero-data
     depends_on:
