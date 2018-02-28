@@ -1,10 +1,16 @@
 {
   "mappings": [
     {
-      "id": "§§PORT",
+      "id": "§§PORT1",
       "url": "§§INSTANCE",
       "protocol": "HTTP",
       "proxy" : "PRIMARY"
-    }
+    },
+    {
+      "id": "§§PORT2",
+      "url": "§§INSTANCE-Server",
+      "protocol": "HTTP",
+      "proxy" : "PRIMARY"
+    },
   ]
 }
