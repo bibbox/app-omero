@@ -7,7 +7,7 @@
       "proxy" : "PRIMARY"
     },
     {
-      "id": "§§PORTServer",
+      "id": "§§SPORT",
       "url": "§§INSTANCE-server",
       "protocol": "HTTP",
       "proxy" : "PRIMARY"
