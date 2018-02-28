@@ -22,7 +22,7 @@ services:
       DBNAME: omeroDBName
       ROOTPASS: omero
     ports:
-      - §§PORTServer:4064
+      - "§§PORTServer:4064"
     volumes_from: 
       - §§INSTANCE-omero-data
 
