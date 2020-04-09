@@ -2,70 +2,70 @@ version: '2'
 
 networks:
     bibbox-default-network:
-      external: true
+        external: true
 
 services:
 
-  §§INSTANCE-omero-grid:
-    image: openmicroscopy/omero-grid
-    command: master
-    container_name:  §§INSTANCE-omero-master
-    restart: unless-stopped
+  §§INSTANCE-omero-db:
+    image: postgres:11
+    container_name: §§INSTANCE-omero-db
     networks:
       - bibbox-default-network
-    links:
-      - §§INSTANCE-omero-db:db
-    environment:
-      DBHOST: §§INSTANCE-omero-db
-      DBUSER: omeroDBUser
-      DBPASS: §§POSTGRES_PASSWORD
-      DBNAME: omeroDBName
-      ROOTPASS: omero
     ports:
-      - "§§PORT2:4064"
-    volumes_from: 
+      - "§§PORT4:5432"
+    environment:
+      - POSTGRES_DB=omero
+      - POSTGRES_USER=omero
+      - POSTGRES_PASSWORD=§§POSTGRES_PASSWORD
+    volumes_from:
+      - §§INSTANCE-omero-data
+    depends_on: 
       - §§INSTANCE-omero-data
 
+  §§INSTANCE-omero-server:
+    image: openmicroscopy/omero-server:5.6
+    container_name: §§INSTANCE-omero-server
+    networks:
+        - bibbox-default-network
+    ports:
+      - "§§PORT3:4063"
+      - "§§PORT2:4064"
+    environment:
+      - ROOTPASS=omero
+      - CONFIG_omero_db_host=§§INSTANCE-omero-db
+      - CONFIG_omero_db_user=omero
+      - CONFIG_omero_db_pass=§§POSTGRES_PASSWORD
+      - CONFIG_omero_db_name=omero
+    volumes_from:
+      - §§INSTANCE-omero-data
     depends_on:
       - §§INSTANCE-omero-db
       - §§INSTANCE-omero-data
-   
-  §§INSTANCE-omero-db:
-    image: postgres
-    container_name: §§INSTANCE-omero-db
-    restart: unless-stopped
+  
+  §§INSTANCE-ome-5_6-web:
+    image: openmicroscopy/omero-web-standalone:5.6
+    container_name: §§INSTANCE-ome-5_6-web
     networks:
-      - bibbox-default-network
-    environment:
-      - POSTGRES_PASSWORD=§§POSTGRES_PASSWORD
-      - POSTGRES_USER=omeroDBUser
-      - POSTGRES_DB=omeroDBName 
-    volumes_from: 
-      - §§INSTANCE-omero-data
-    depends_on:
-      - §§INSTANCE-omero-data
-
-
-  §§INSTANCE-omero-web:
-    image: openmicroscopy/omero-grid-web
-    container_name: §§INSTANCE-omero-web
-    restart: unless-stopped
-    networks:
-      - bibbox-default-network
-    environment:
-      MASTER_ADDR: §§INSTANCE-omero-grid
-    depends_on:
-      - §§INSTANCE-omero-grid
-    links:
-      - §§INSTANCE-omero-grid:master
+        - bibbox-default-network
     ports:
-      - "§§PORT1:8080"
-
+    - "§§PORT1:4080"
+    environment:
+      - ROOTPASS=omero
+      - OMEROHOST=§§INSTANCE-omero-server
+    volumes_from:
+      - §§INSTANCE-omero-data
+    depends_on:
+      - §§INSTANCE-omero-server
+      - §§INSTANCE-omero-data
 
   §§INSTANCE-omero-data:
     image: busybox
     container_name: §§INSTANCE-omero-data
     volumes:
-      - ./data/OMERO:/OMERO
       - ./data/postgres:/var/lib/postgresql/data
+      - ./data/OMERO:/OMERO
+      - ./data/ome-server-var:/opt/omero/server/OMERO.server/var
+      - /home/v/test_data:/OMERO/share
+    
     command: "chown 1000:1000 /OMERO"
+    command: "chown 1000:1000 /opt/omero/server/OMERO.server/var"

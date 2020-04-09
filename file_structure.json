@@ -1,6 +1,7 @@
 {
   "makefolders":[
     "data/postgres",
+    "data/ome-server-var",
     "data/OMERO/BioFormatsCache",
     "data/OMERO/DropBox",
     "data/OMERO/Files",

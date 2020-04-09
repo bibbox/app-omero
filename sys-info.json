@@ -1,4 +1,4 @@
 {
-  runningcontainers:["§§INSTANCE-omero-master", "§§INSTANCE-omero-db","§§INSTANCE-omero-web"],
+  runningcontainers:["§§INSTANCE-omero-db", "§§INSTANCE-omero-server", "§§INSTANCE-ome-5_6-web"],
   supportcontainers:["§§INSTANCE-omero-data"]    
 }

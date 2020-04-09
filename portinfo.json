@@ -11,6 +11,18 @@
       "url": "§§INSTANCE-Server",
       "protocol": "HTTP",
       "proxy" : "PRIMARY"
+    },
+    {
+      "id": "§§PORT3",
+      "url": "§§INSTANCE-Server1",
+      "protocol": "HTTP",
+      "proxy" : "PRIMARY"
+    },
+    {
+      "id": "§§PORT4",
+      "url": "§§INSTANCE-Server2",
+      "protocol": "HTTP",
+      "proxy" : "PRIMARY"
     }
   ]
 }
