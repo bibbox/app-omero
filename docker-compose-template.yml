@@ -30,7 +30,7 @@ services:
       CONFIG_omero_db_name: omero
       ROOTPASS: omero
     networks: 
-      -bibbox-default-network
+      - bibbox-default-network
     ports:
       - "§§PORT3:4063"
       - "§§PORT2:4064"
