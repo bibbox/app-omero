@@ -14,8 +14,8 @@ services:
       POSTGRES_USER: omero
       POSTGRES_DB: omero
       POSTGRES_PASSWORD: §§POSTGRES_PASSWORD
-      networks: 
-        - bibbox-default-network
+    networks: 
+      - bibbox-default-network
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
 
