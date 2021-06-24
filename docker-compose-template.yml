@@ -14,8 +14,7 @@ services:
       POSTGRES_USER: omero
       POSTGRES_DB: omero
       POSTGRES_PASSWORD: §§POSTGRES_PASSWORD
-      networks:
-      - bibbox-default-network
+      networks: bibbox-default-network
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
 
@@ -29,8 +28,7 @@ services:
       CONFIG_omero_db_pass: §§POSTGRES_PASSWORD
       CONFIG_omero_db_name: omero
       ROOTPASS: omero
-    networks:
-      - bibbox-default-network
+    networks: bibbox-default-network
     ports:
       - "§§PORT3:4063"
       - "§§PORT2:4064"
@@ -44,8 +42,7 @@ services:
     restart: unless-stopped
     environment:
       OMEROHOST: §§INSTANCE-omero-server
-    networks:
-      - bibbox-default-network
+    networks: bibbox-default-network
     ports:
       - "§§PORT1:4080"
 
