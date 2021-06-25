@@ -17,7 +17,7 @@ services:
     networks: 
       - bibbox-default-network
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data:rw
+      - ./data/postgres:/var/lib/postgresql/data:ro
 
   §§INSTANCE-omero-server:
     image: "openmicroscopy/omero-server:5.6"
@@ -30,18 +30,15 @@ services:
       CONFIG_omero_db_pass: §§POSTGRES_PASSWORD
       CONFIG_omero_db_name: omero
       ROOTPASS: omero
-      UID: 1000
-      GID: 1000
-    user: "${UID}:${GID}"
     networks: 
       - bibbox-default-network
     ports:
       - "§§PORT3:4063"
       - "§§PORT2:4064"
     volumes:
-      - ./data/omero:/OMERO
-      - ./data/ome-server-var:/opt/omero/server/OMERO.server/var
-      - /home/mupaadmin/test_data:/OMERO/share
+      - ./data/omero:/OMERO:ro
+      - ./data/ome-server-var:/opt/omero/server/OMERO.server/var:ro
+      - /home/mupaadmin/test_data:/OMERO/share:ro
         
   §§INSTANCE-omero-web:
     image: "openmicroscopy/omero-web-standalone:5.6"
