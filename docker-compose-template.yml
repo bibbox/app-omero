@@ -21,7 +21,6 @@ services:
 
   §§INSTANCE-omero-server:
     image: "openmicroscopy/omero-server:5.6"
-    
     restart: unless-stopped
     container_name: §§INSTANCE-omero-server
     environment:
@@ -36,7 +35,7 @@ services:
       - "§§PORT3:4063"
       - "§§PORT2:4064"
     volumes:
-      - ./data/omero:/OMERO:ro
+      - ./data/omero:/OMERO:rw
       - ./data/ome-server-var:/opt/omero/server/OMERO.server/var:rw
       - /home/mupaadmin/test_data:/OMERO/share:rw
         
