@@ -21,6 +21,7 @@ services:
 
   §§INSTANCE-omero-server:
     image: "openmicroscopy/omero-server:5.6"
+    user: "${0}:${0}"
     restart: unless-stopped
     container_name: §§INSTANCE-omero-server
     environment:
@@ -38,8 +39,6 @@ services:
       - ./data/omero:/OMERO
       - ./data/ome-server-var:/opt/omero/server/OMERO.server/var
       - /home/mupaadmin/test_data:/OMERO/share
-    healthcheck:
-      test: ["CMD", 'chmod', '777', '/OMERO']
         
   §§INSTANCE-omero-web:
     image: "openmicroscopy/omero-web-standalone:5.6"
