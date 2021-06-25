@@ -32,8 +32,8 @@ services:
     networks: 
       - bibbox-default-network
     ports:
-      - "§§PORT3:4063"
-      - "§§PORT2:4064"
+      - "4063:4063"
+      - "4064:4064"
         
   §§INSTANCE-omero-web:
     image: "openmicroscopy/omero-web-standalone:5.6"
@@ -44,5 +44,5 @@ services:
     networks: 
       - bibbox-default-network
     ports:
-      - "§§PORT1:4080"
+      - "4080:4080"
 
