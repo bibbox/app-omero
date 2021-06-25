@@ -21,7 +21,7 @@ services:
 
   §§INSTANCE-omero-server:
     image: "openmicroscopy/omero-server:5.6"
-    user: "${0}:${0}"
+    
     restart: unless-stopped
     container_name: §§INSTANCE-omero-server
     environment:
@@ -30,6 +30,9 @@ services:
       CONFIG_omero_db_pass: §§POSTGRES_PASSWORD
       CONFIG_omero_db_name: omero
       ROOTPASS: omero
+      UID: 1000
+      GID: 1000
+    user: "${UID}:${GID}"
     networks: 
       - bibbox-default-network
     ports:
