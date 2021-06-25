@@ -34,7 +34,7 @@ services:
     ports:
       - "§§PORT3:4063"
       - "§§PORT2:4064"
-    volumes:
+    # volumes:
       # - ./data/omero:/OMERO:rw
       # - ./data/ome-server-var:/opt/omero/server/OMERO.server/var:rw
       # - /home/mupaadmin/test_data:/OMERO/share:rw
