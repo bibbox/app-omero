@@ -17,7 +17,7 @@ services:
     networks: 
       - bibbox-default-network
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - ./data/postgres:/var/lib/postgresql/data:rw
 
   §§INSTANCE-omero-server:
     image: "openmicroscopy/omero-server:5.6"
@@ -35,12 +35,15 @@ services:
       - "§§PORT3:4063"
       - "§§PORT2:4064"
     volumes:
-      - ./data/omero:/OMERO
-      - ./data/ome-server-var:/opt/omero/server/OMERO.server/var
-      - /home/mupaadmin/test_data:/OMERO/share
+      - ./data/omero:/OMERO:rw
+      - ./data/ome-server-var:/opt/omero/server/OMERO.server/var:rw 
+      - /home/mupaadmin/test_data:/OMERO/share:rw
+    command: 
+        
 
   §§INSTANCE-omero-web:
     image: "openmicroscopy/omero-web-standalone:5.6"
+    container_name: §§INSTANCE-omero-server
     restart: unless-stopped
     environment:
       OMEROHOST: §§INSTANCE-omero-server
