@@ -43,6 +43,11 @@ services:
       OMEROHOST: §§INSTANCE-omero-server
     networks: 
       - bibbox-default-network
+    proxy:
+     TYPE: PRIMARY
+     URLPREFIX:  §§INSTANCE
+     TEMPLATE: default
+     DISPLAYNAME: 'Omero'
     ports:
       - "4080:4080"
 
