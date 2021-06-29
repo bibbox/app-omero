@@ -11,7 +11,9 @@
   "copyfiles":[
         {
       "source":"virtualhost_http.template",
-      "destination":"virtualhost_http.template"
+      "destination":"virtualhost_http.template",
+      "source":"Dockerfile",
+      "destination":"Dockerfile"
        }
     ]
 }
