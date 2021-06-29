@@ -1,4 +1,4 @@
 from openmicroscopy:omero-server:5.6"
 
-mkdir /OMERO
+MKDIR /OMERO
 RUN chmod -R 777 /OMERO
