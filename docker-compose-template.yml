@@ -7,7 +7,6 @@ networks:
 services:
 
   §§INSTANCE-omero-db:
-    user: "1000:1000"
     image: "postgres:11"
     restart: unless-stopped
     container_name: §§INSTANCE-omero-db
@@ -40,7 +39,6 @@ services:
       - ./data/OMERO:/OMERO
   
   §§INSTANCE-omero-web:
-    user: "1000:1000"
     image: "openmicroscopy/omero-web-standalone:5.6"
     container_name: §§INSTANCE-omero-web
     restart: unless-stopped
