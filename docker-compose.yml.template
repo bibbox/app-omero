@@ -1,5 +1,4 @@
 version: "3"
-# hallo comment
 networks:
     bibbox-default-network:
       external: true

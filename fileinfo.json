@@ -1,19 +1,7 @@
 {
-  "makefolders":[
-    "data/postgres",
-    "data/ome-server-var",
-    "data/OMERO/BioFormatsCache",
-    "data/OMERO/DropBox",
-    "data/OMERO/Files",
-    "data/OMERO/FullText",
-    "data/OMERO/ManagedRepository"
-  ],
-  "copyfiles":[
-        {
-      "source":"virtualhost_http.template",
-      "destination":"virtualhost_http.template"},
-          {"source":"Dockerfile",
-      "destination":"Dockerfile"
-       }
-    ]
+	"environment_replace": {},
+	"script_replace": [],
+	"permissions": {
+		"data": 777
+	}
 }
