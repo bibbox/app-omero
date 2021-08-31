@@ -63,7 +63,7 @@ services:
         - JUPYTER_TOKEN=§§JUPYTER_TOKEN
     proxy:
         TYPE: HELPER
-        URLPREFIX:  §§INSTANCE
+        URLPREFIX:  §§INSTANCE-jupyter
         TEMPLATE: websocket
         DISPLAYNAME: 'Jupyter'
         PATH_TO_SOCKET: '/api/kernels/'
