@@ -36,6 +36,7 @@ services:
       - "4064:4064"
     volumes:
       - ./data/OMERO:/OMERO
+      - ./data/opt:/opt
   
   §§INSTANCE-omero-web:
     image: "openmicroscopy/omero-web-standalone:5.6"
@@ -52,3 +53,23 @@ services:
      DISPLAYNAME: 'Omero'
     ports:
       - "4080:4080"
+    
+  §§INSTANCE-jupyter:
+    image: jupyter/datascience-notebook
+    container_name:  §§INSTANCE-jupyter
+    restart: unless-stopped
+    networks:
+        - bibbox-default-network
+    environment:
+        - JUPYTER_TOKEN=§§JUPYTER_TOKEN
+    proxy:
+        TYPE: HELPER
+        URLPREFIX:  §§INSTANCE
+        TEMPLATE: websocket
+        DISPLAYNAME: 'Jupyter'
+        PATH_TO_SOCKET: '/api/kernels/'
+    ports:
+        - "8888:8888"
+    volumes:
+        - ./notebooks:/home/jovyan/work
+        - ./data/opt:/opt
