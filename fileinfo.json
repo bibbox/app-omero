@@ -2,7 +2,6 @@
 	"environment_replace": {},
 	"script_replace": [],
 	"permissions": {
-		"data": 777,
-		"notebooks" : 777
+		"data": 777
 	}
 }
