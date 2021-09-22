@@ -35,6 +35,7 @@ If necessary change the ports in the environment file .env and the volume mounts
   *	NOTE: These parameters are not neccesary to be set in the local installation. They can be found in the docker-compose.yml file
 
 ## Mounted Volumes
-
-* the postgres datafolder _/var/lib/postgresql/data_ will be mounted to _data/postgres_ in your BIBBOX kit (OMERO DB container) 
-* the omero data container _/OMERO_ will be mounted to _/data/OMERO_ (OMERO server container)
+### OMERO DB container 
+* the postgres datafolder _/var/lib/postgresql/data_ will be mounted to _data/postgres_ in your BIBBOX kit 
+### OMERO DB container
+* the omero data container _/OMERO_ will be mounted to _/data/OMERO_ 
