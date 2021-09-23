@@ -29,6 +29,12 @@ services:
       CONFIG_omero_db_pass: §§POSTGRES_PASSWORD
       CONFIG_omero_db_name: omero
       ROOTPASS: omero
+    proxy:
+        TYPE: HELPER
+        URLPREFIX:  §§INSTANCE-jupyter
+        TEMPLATE: default
+        DISPLAYNAME: 'OMERO-Server'
+        
     networks: 
       - bibbox-default-network
     ports:
@@ -71,3 +77,4 @@ services:
         - "8888:8888"
     volumes:
         - ./data/notebooks:/home/jovyan/work
+        - /var/run/docker.sock:/var/run/docker.sock
