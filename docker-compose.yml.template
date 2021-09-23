@@ -67,7 +67,7 @@ services:
         - bibbox-default-network
     environment:
         - JUPYTER_TOKEN=§§JUPYTER_TOKEN
-        - GRANT_SUDO=yes
+        - GRANT_SUDO="1"
     proxy:
         TYPE: HELPER
         URLPREFIX:  §§INSTANCE-jupyter
