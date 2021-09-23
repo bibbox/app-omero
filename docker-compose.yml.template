@@ -60,14 +60,14 @@ services:
       - "4080:4080"
     
   §§INSTANCE-jupyter:
-    image: jupyter/datascience-notebook
+    image: jupyter/base-notebook
     container_name:  §§INSTANCE-jupyter
     restart: unless-stopped
     networks:
         - bibbox-default-network
     environment:
         - JUPYTER_TOKEN=§§JUPYTER_TOKEN
-        - GRANT_SUDO="1"
+        - GRANT_SUDO=1
     proxy:
         TYPE: HELPER
         URLPREFIX:  §§INSTANCE-jupyter
