@@ -31,7 +31,7 @@ services:
       ROOTPASS: omero
     proxy:
         TYPE: HELPER
-        URLPREFIX:  §§INSTANCE-jupyter
+        URLPREFIX:  §§INSTANCE-server
         TEMPLATE: default
         DISPLAYNAME: 'OMERO-Server'
         
