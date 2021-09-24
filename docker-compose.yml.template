@@ -60,7 +60,9 @@ services:
       - "4080:4080"
     
   §§INSTANCE-jupyter:
-    image: jupyter/base-notebook
+    build:
+    	context: ./images
+    image: jupyter/omero-notebook
     container_name:  §§INSTANCE-jupyter
     restart: unless-stopped
     networks:
