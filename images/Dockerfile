@@ -4,7 +4,7 @@ USER root
 
 RUN	apt-get update && \ 
 	apt-get install -y docker.io gcc g++ && \
-	chwon jovyan /var/run/docker.sock
+	chown jovyan /var/run/docker.sock
 
 USER jovyan
 
