@@ -61,8 +61,8 @@ services:
     
   §§INSTANCE-jupyter:
     build:
-    	context: ./images/
-        dockerfile: Dockerfile
+      context: ./images/
+      dockerfile: Dockerfile
     image: jupyter/omero-notebook
     container_name:  §§INSTANCE-jupyter
     restart: unless-stopped
