@@ -63,6 +63,7 @@ services:
     build:
       context: ./images/
       dockerfile: Dockerfile
+    # user: "1000:100"
     image: jupyter/omero-notebook
     container_name:  §§INSTANCE-jupyter
     restart: unless-stopped
@@ -81,4 +82,4 @@ services:
         - "8888:8888"
     volumes:
         - ./data/notebooks:/home/jovyan/work
-        - /var/run/docker.sock:/var/run/docker.sock
+        - /var/run/docker.sock:/var/run/docker.sock:rw
