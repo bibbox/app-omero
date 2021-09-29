@@ -1,0 +1,70 @@
+version: "3"
+networks:
+    bibbox-default-network:
+      external: true
+
+services:
+
+  omero-db:
+    image: "postgres:11"
+    restart: unless-stopped
+    container_name: omero-db
+    environment:
+      POSTGRES_USER: omero
+      POSTGRES_DB: omero
+      POSTGRES_PASSWORD: omero
+    networks: 
+      - bibbox-default-network
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data:rw
+
+  omero-server:
+    image: "openmicroscopy/omero-server:5.6"
+    restart: unless-stopped
+    user: "1000:1000"
+    container_name: omero-server
+    environment:
+      CONFIG_omero_db_host: omero-db
+      CONFIG_omero_db_user: omero
+      CONFIG_omero_db_pass: omero
+      CONFIG_omero_db_name: omero
+      ROOTPASS: omero
+        
+    networks: 
+      - bibbox-default-network
+    ports:
+      - "4063:4063"
+      - "4064:4064"
+    volumes:
+      - ./data/OMERO:/OMERO
+      - /home/simon/Documents/master_wsi_annot/LYTestCases/022:/OMERO/share
+  
+  omero-web:
+    image: "openmicroscopy/omero-web-standalone:5.6"
+    container_name: omero-web
+    restart: unless-stopped
+    environment:
+      OMEROHOST: omero-server
+    networks: 
+      - bibbox-default-network
+    ports:
+      - "4080:4080"
+    
+  jupyter:
+    build:
+      context: ./images/
+      dockerfile: Dockerfile
+    # user: "1000:100"
+    image: jupyter/omero-notebook
+    container_name:  jupyter
+    restart: unless-stopped
+    networks:
+        - bibbox-default-network
+    environment:
+        - JUPYTER_TOKEN=1234asdf
+        - GRANT_SUDO=1
+    ports:
+        - "8888:8888"
+    volumes:
+        - ./data/notebooks:/home/jovyan/work
+        - /var/run/docker.sock:/var/run/docker.sock:rw
