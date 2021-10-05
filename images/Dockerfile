@@ -40,6 +40,7 @@ RUN "${CONDA_DIR}/envs/${conda_env}/bin/python" -m ipykernel install --user --na
 # any additional pip installs can be added by uncommenting the following line
 RUN "${CONDA_DIR}/envs/${conda_env}/bin/pip" install omero-py
 RUN "${CONDA_DIR}/envs/${conda_env}/bin/pip" install docker 
+RUN "${CONDA_DIR}/envs/${conda_env}/bin/pip" install pandas
 
 # prepend conda environment to path
 ENV PATH "${CONDA_DIR}/envs/${conda_env}/bin:${PATH}"

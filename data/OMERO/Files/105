@@ -1,9 +1,0 @@
-Traceback (most recent call last):
-  File "./script", line 49, in <module>
-    not need to be run by users.""")
-  File "/opt/omero/server/venv3/lib64/python3.6/site-packages/omero/scripts.py", line 408, in client
-    handleParse(c)  # May throw
-  File "/opt/omero/server/venv3/lib64/python3.6/site-packages/omero/scripts.py", line 425, in handleParse
-    raise ParseExit(c.params)
-omero.scripts.ParseExit
-!! 09/29/21 13:41:45.121 error: communicator not destroyed during global destruction.
