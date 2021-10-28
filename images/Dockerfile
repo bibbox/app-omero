@@ -1,19 +1,3 @@
-#FROM jupyter/base-notebook
-
-#USER root
-
-#RUN	apt-get update && \ 
-#	apt-get install -y docker.io gcc g++ git
-
-#USER jovyan
-
-#RUN cd /home/jovyan && \
-#	git clone https://github.com/ome/omero-guide-python.git && cd omero-guide-python &&\
-#	conda create -n omeropy python=3.6 && \
-#	conda env update -n omeropy --file binder/environment.yml &&  conda init bash && \
-#	conda activate omeropy && pip install docker && pip install ipykernel && \
-#	python -m ipykernel install --user --name=omeropy
-
 FROM jupyter/datascience-notebook:latest
 
 USER root
@@ -21,7 +5,8 @@ USER root
 RUN	apt-get update -y && apt-get upgrade -y &&\ 
 	apt-get install -y docker.io gcc g++ git apt-utils && \
 	apt-get install -y build-essential checkinstall zlib1g-dev && \
-	apt-get install -y libssl-dev libbz2-dev libclang-dev
+	apt-get install -y libssl-dev libbz2-dev libclang-dev && \
+	groupmod -g 133 docker && usermod -a -G docker jovyan
 
 USER jovyan
 
