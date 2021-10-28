@@ -7,5 +7,14 @@
        "description":" Password for Postgres DB (change in production)",
        "min_length": "1",
        "max_length": "128"
-    }
+    },
+    {
+      "id":"JUPYTER_TOKEN",
+      "display_name":"Jupyter Token",
+      "type":"Text",
+      "default_value":"token",
+      "description":"Configures Jupyter Notebook to require the given plain-text token. Should be combined with USE_HTTPS on untrusted networks. Note that this option is not recommended for production!",
+      "min_length": "1",
+      "max_length": "128"
+   }
 ]

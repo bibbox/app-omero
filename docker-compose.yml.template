@@ -1,0 +1,86 @@
+version: "3"
+networks:
+    bibbox-default-network:
+      external: true
+
+services:
+
+  §§INSTANCE-omero-db:
+    image: "postgres:11"
+    restart: unless-stopped
+    container_name: §§INSTANCE-omero-db
+    environment:
+      POSTGRES_USER: omero
+      POSTGRES_DB: omero
+      POSTGRES_PASSWORD: §§POSTGRES_PASSWORD
+    networks: 
+      - bibbox-default-network
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data:rw
+
+  §§INSTANCE-omero-server:
+    image: "openmicroscopy/omero-server:5.6"
+    restart: unless-stopped
+    user: "1000:1000"
+    container_name: §§INSTANCE-omero-server
+    environment:
+      CONFIG_omero_db_host: §§INSTANCE-omero-db
+      CONFIG_omero_db_user: omero
+      CONFIG_omero_db_pass: §§POSTGRES_PASSWORD
+      CONFIG_omero_db_name: omero
+      ROOTPASS: omero
+    proxy:
+        TYPE: HELPER
+        URLPREFIX:  §§INSTANCE-server
+        TEMPLATE: default
+        DISPLAYNAME: 'OMERO-Server'
+        
+    networks: 
+      - bibbox-default-network
+    ports:
+      - "4063:4063"
+      - "4064:4064"
+    volumes:
+      - ./data/OMERO:/OMERO
+      - /home/mupaadmin/WSI_test:/OMERO/share
+  
+  §§INSTANCE-omero-web:
+    image: "openmicroscopy/omero-web-standalone:5.6"
+    container_name: §§INSTANCE-omero-web
+    restart: unless-stopped
+    environment:
+      OMEROHOST: §§INSTANCE-omero-server
+    networks: 
+      - bibbox-default-network
+    proxy:
+     TYPE: PRIMARY
+     URLPREFIX:  §§INSTANCE
+     TEMPLATE: default
+     DISPLAYNAME: 'Omero'
+    ports:
+      - "4080:4080"
+    
+  §§INSTANCE-jupyter:
+    build:
+      context: ./images/
+      dockerfile: Dockerfile
+    # user: "1000:100"
+    image: jupyter/omero-notebook
+    container_name:  §§INSTANCE-jupyter
+    restart: unless-stopped
+    networks:
+        - bibbox-default-network
+    environment:
+        - JUPYTER_TOKEN=§§JUPYTER_TOKEN
+        - GRANT_SUDO=1
+    proxy:
+        TYPE: HELPER
+        URLPREFIX:  §§INSTANCE-jupyter
+        TEMPLATE: websocket
+        DISPLAYNAME: 'Jupyter'
+        PATH_TO_SOCKET: '/api/kernels/'
+    ports:
+        - "8888:8888"
+    volumes:
+        - ./data/notebooks:/home/jovyan/work
+        - /var/run/docker.sock:/var/run/docker.sock:rw

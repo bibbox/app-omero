@@ -10,9 +10,9 @@ To install the app locally execute the commands:
 
 `sudo git clone https://github.com/bibbox/app-omero`
 
-`cd app-omero`
-
-`docker-compose up -d`
+`cd app-omero` <br>
+`sudo chmod -R 777 data/` <br>
+`docker-compose up -d` <br>
 
 After the Installation open "http://localhost:4080"
 
