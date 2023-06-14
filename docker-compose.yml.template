@@ -64,7 +64,7 @@ services:
     build:
       context: ./images/
       dockerfile: Dockerfile
-    suser: "1000:100"s
+    user: "1000:100"
     image: jupyter/omero-notebook
     container_name:  §§INSTANCE-jupyter
     restart: unless-stopped
