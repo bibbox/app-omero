@@ -12,4 +12,4 @@ After installation open §§PORT2 to allow access with a client (like OMERO.insi
 
 Have a nice ride with the new Admins youngtimer.
 
-![FINAL](install-screen-final.jpg)
+![FINAL](assets/install-screen-final.jpg)
