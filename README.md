@@ -1,8 +1,9 @@
 # OMERO BIBBOX application
 
-This container can be installed as [BIBBOX APP](http://silicolabv4.bibbox.org/applications "BIBBOX App Store") or standalone. 
+This container can be installed as [BIBBOX APP](https://bibbox.readthedocs.io/en/latest/) or standalone. 
 
 * initial user/passwordd: **root / omero**
+* After the docker installation follow these [instructions](INSTALL-APP.md)
 
 ## Standalone Installation 
 
