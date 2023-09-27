@@ -1,42 +1,52 @@
-# OMERO BIBBOX application
+# omero BIBBOX application
 
-This container can be installed as [BIBBOX APP](https://bibbox.readthedocs.io/en/latest/) or standalone. 
+This container can be installed as [BIBBOX APP](https://bibbox.readthedocs.io/en/latest/ "BIBBOX App Store") or standalone. 
 
-* initial user/passwordd: **root / omero**
-* After the docker installation follow these [instructions](INSTALL-APP.md)
+- after the docker installation follow these [instructions](INSTALL-APP.md)
 
 ## Standalone Installation 
 
-To install the app locally execute the commands:
+Clone the github repository. If necessary change the ports in the environment file `.env` and the volume mounts in `docker-compose.yml`.
 
-`sudo git clone https://github.com/bibbox/app-omero`
+```
+git clone https://github.com/bibbox/app-omero
+cd app-omero
+docker-compose up -d
+```
 
-`cd app-omero` <br>
-`sudo chmod -R 777 data/` <br>
-`docker-compose up -d` <br>
-
-After the Installation open "http://localhost:4080"
-
-Stadart Port for omero-web is 4080
-
-If necessary change the ports in the environment file .env and the volume mounts in `docker-compose.yml`.
+The main app can be opened and set up at
+```
+http://localhost:4080
+```
 
 ## Install within BIBBOX
 
-* Follow the link above and find the App by its name. Click on the Symbol and select Install. Then fill the Parameters below and Name your app Click install again
+Visit the BIBBOX page and find the App by its name in the Store. Click on the symbol and select Install. Then fill the parameters below and name your app click install again.
 
-## Docker Images Used
- * [openmicroscopy/omero-server:5.6](https://hub.docker.com/r/openmicroscopy/omero-server/)
- * [openmicroscopy/omero-web-standalone:5.6](https://hub.docker.com/r/openmicroscopy/omero-web-standalone/) 
- * [postgres](https://hub.docker.com/_/postgres/), offical postgres container
+## Docker Images used
+  - [postgres](https://hub.docker.com/r/postgres) 
+  - [openmicroscopy/omero-server](https://hub.docker.com/r/openmicroscopy/omero-server) 
+  - [openmicroscopy/omero-web-standalone](https://hub.docker.com/r/openmicroscopy/omero-web-standalone) 
+  - [jupyter/omero-notebook](https://hub.docker.com/r/jupyter/omero-notebook) 
+
+
  
 ## Install Environment Variables
-  *	POSTGRES_PASSWORD = password for the postgres DB
-  *	JUPYTER_TOKEN = Token for a jupyther Notebook to allow controlling omero server functions from the python shell (ONLY IN BIBBOX APP)
-  *	NOTE: These parameters are not neccesary to be set in the local installation. They can be found in the docker-compose.yml file
+  - POSTGRES_PASSWORD =  Password for Postgres DB (change in production environments)
+  - JUPYTER_TOKEN = Configures Jupyter Notebook to require the given plain-text token. Should be combined with USE_HTTPS on untrusted networks. Note that this option is not recommended for production!
 
+  
+The default values for the standalone installation are:
+  - POSTGRES_PASSWORD = changethispasswordinproductionenvironments
+  - JUPYTER_TOKEN = token
+
+  
 ## Mounted Volumes
-### OMERO DB container 
-* the postgres datafolder _/var/lib/postgresql/data_ will be mounted to _data/postgres_ in your BIBBOX kit 
-### OMERO DB container
-* the omero data container _/OMERO_ will be mounted to _/data/OMERO_ 
+### postgres Conatiner
+  - *./data/postgres:/var/lib/postgresql/data:rw*
+### openmicroscopy/omero-server Conatiner
+  - *./data/OMERO:/OMERO*
+  - */home/simon/Documents/master_wsi_annot/LYTestCases/022:/OMERO/share*
+### jupyter/omero-notebook Conatiner
+  - *./data/notebooks:/home/jovyan/work*
+  - */var/run/docker.sock:/var/run/docker.sock:rw*
