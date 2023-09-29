@@ -43,12 +43,12 @@ The default values for the standalone installation are:
 
   
 ## Mounted Volumes
-### postgres Conatiner
+### postgres Container
   - *./data/postgres:/var/lib/postgresql/data:rw*
-### openmicroscopy/omero-server Conatiner
+### openmicroscopy/omero-server Container
   - *./data/OMERO:/OMERO*
   - */home/simon/Documents/master_wsi_annot/LYTestCases/022:/OMERO/share*
-### jupyter/omero-notebook Conatiner
+### jupyter/omero-notebook Container
   - *./data/notebooks:/home/jovyan/work*
   - */var/run/docker.sock:/var/run/docker.sock:rw*
 
