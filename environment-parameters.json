@@ -4,7 +4,7 @@
        "display_name":"Postgres DB Password",
        "type":"text",
        "default_value":"changethispasswordinproductionenvironments",
-       "description":" Password for Postgres DB (change in production environments)",
+       "description":"Choose your password for Postgres DB (change in production environments)",
        "min_length": "1",
        "max_length": "128"
     },
